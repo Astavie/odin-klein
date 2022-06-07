@@ -1,7 +1,5 @@
 package pga3d
 
-// math
-
 add :: proc {
     add_dual,
     add_ass_dual,
@@ -125,8 +123,6 @@ norm :: proc {
     norm_branch,
     norm_line,
 }
-
-// values
 
 x :: proc {
     x_direction,

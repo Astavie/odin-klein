@@ -16,14 +16,14 @@ when USE_NATIVE_SIMD && (ODIN_ARCH == .i386 || ODIN_ARCH == .amd64) {
 } else {
 
     hi_dp :: #force_inline proc "contextless" (a, b : #simd[4]f32) -> #simd[4]f32 {
-        // TODO: check if this is faster or if reduce_add_ordered would be faster
+        // TODO: check if using reduce_add_ordered would be faster
         bits := transmute(#simd[4]u32) hi_dp_bc(a, b)
         mask :: #simd[4]u32 { 0xFFFFFFFF, 0, 0, 0 }
         return transmute(#simd[4]f32) simd.and(bits, mask)
     }
 
     hi_dp_bc :: #force_inline proc "contextless" (a, b : #simd[4]f32) -> #simd[4]f32 {
-        // TODO: check if this is faster or if reduce_add_ordered would be faster
+        // TODO: check if using reduce_add_ordered would be faster
         out := simd.mul(a, b)
         o1  := simd.swizzle(out, 1, 1, 1, 1)
         o2  := simd.swizzle(out, 2, 2, 2, 2)
